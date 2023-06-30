@@ -3,11 +3,11 @@ import { MouseEventHandler, MouseEvent, useEffect, useState } from 'react'
 import * as Ably from 'ably/promises'
 import { configureAbly } from '@ably-labs/react-hooks'
 
-import Layout from '../components/layout'
-import Logger, { LogEntry } from '../components/logger'
+import Layout from '@/components/layout'
+import Logger, { LogEntry } from '@/components/logger'
 
-import homeStyles from '../styles/Home.module.css'
-import styles from '../styles/PubSub.module.css'
+import homeStyles from '@/styles/Home.module.css'
+import styles from '@/styles/PubSub.module.css'
 
 export default function PubSub() {
 

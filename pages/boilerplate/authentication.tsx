@@ -1,13 +1,13 @@
 import { MouseEventHandler, MouseEvent, useState, useEffect } from 'react'
 
-import Layout from '../components/layout'
-import Logger, { LogEntry } from '../components/logger'
+import Layout from '@/components/layout'
+import Logger, { LogEntry } from '@/components/logger'
 
 import * as Ably from 'ably/promises'
 import { assertConfiguration, configureAbly } from '@ably-labs/react-hooks'
 
-import styles from '../styles/Home.module.css'
-import authStyles from '../styles/Authentication.module.css'
+import styles from '@/styles/Home.module.css'
+import authStyles from '@/styles/Authentication.module.css'
 
 export default function Authentication() {
 

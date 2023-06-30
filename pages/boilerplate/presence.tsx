@@ -3,11 +3,11 @@ import { MouseEventHandler, MouseEvent, useEffect, useState, FormEvent, ChangeEv
 import * as Ably from 'ably/promises'
 import { configureAbly } from '@ably-labs/react-hooks'
 
-import Layout from '../components/layout'
-import Logger, { LogEntry } from '../components/logger'
+import Layout from '@/components/layout'
+import Logger, { LogEntry } from '@/components/logger'
 
-import homeStyles from '../styles/Home.module.css'
-import styles from '../styles/Presence.module.css'
+import homeStyles from '@/styles/Home.module.css'
+import styles from '@/styles/Presence.module.css'
 
 const presenceActionIcon = new Map<string, string>([
   ['enter', '🟢'],

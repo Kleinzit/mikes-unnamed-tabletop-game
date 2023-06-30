@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react'
 import * as Ably from 'ably/promises'
 import { configureAbly } from '@ably-labs/react-hooks'
 
-import Layout from '../components/layout'
-import Logger, { LogEntry } from '../components/logger'
+import Layout from '@/components/layout'
+import Logger, { LogEntry } from '@/components/logger'
 
-import styles from '../styles/Home.module.css'
+import styles from '@/styles/Home.module.css'
 
 type Message = {
   timestamp: number,
