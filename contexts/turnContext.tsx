@@ -15,7 +15,7 @@ interface TurnContextProviderProps {
 }
 
 export const TurnContextProvider = (props: TurnContextProviderProps) => {
-  console.log("Rendering TurnContextProvider");
+  console.log("Loading TurnContextProvider");
   const [currentPlayer, setCurrentPlayer] = useState("");
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const TurnContextProvider = (props: TurnContextProviderProps) => {
       console.log(data.currentPlayer);
     };
     fetchCurrentPlayer();
-  }, [currentPlayer]);
+  }, []);
 
   const value = { currentPlayer, setCurrentPlayer };
 

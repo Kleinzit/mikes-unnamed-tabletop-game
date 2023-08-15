@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { connectToDatabase } from "@/utils/mongodb";
+import { actionResolver } from "@/utils/actionResolver";
 
 import * as dotenv from "dotenv";
 
@@ -25,14 +26,26 @@ export default async function handler( // CharacterSheetHandler
     }
     return res.status(200).json({ characterSheet: characterSheet });
   } else if (req.method === "POST") {
-    const data = req.body;
-    const { sender, receiver } = data; // from poke event
+    const data = req.body; // from poke event
+    const { action, weapon, damageType, tier, bodyPart, sender, receiver } =
+      data;
 
+    const update = await actionResolver(
+      sender,
+      receiver,
+      action,
+      weapon,
+      damageType,
+      tier,
+      bodyPart
+    );
+    
+    // https://www.mongodb.com/docs/manual/reference/method/db.collection.findOneAndUpdate/
     const updatedCharacterData = await db
       .collection("character-sheets")
       .findOneAndUpdate(
         { name: receiver },
-        { $inc: { actionPoints: 1 } },
+        { $inc: update.receiverUpdate },
         { returnDocument: "after" }
       );
 
@@ -40,7 +53,7 @@ export default async function handler( // CharacterSheetHandler
       .collection("character-sheets")
       .findOneAndUpdate(
         { name: sender },
-        { $inc: { actionPoints: -1 } },
+        { $inc: update.senderUpdate },
         { returnDocument: "after" }
       );
 
@@ -49,7 +62,7 @@ export default async function handler( // CharacterSheetHandler
     // Send updated character data to client
     return res.status(200).json({
       updatedCharacterData: updatedCharacterData,
-      updatedSenderCharacterData: updatedSenderCharacterData
+      updatedSenderCharacterData: updatedSenderCharacterData,
     });
   }
 }

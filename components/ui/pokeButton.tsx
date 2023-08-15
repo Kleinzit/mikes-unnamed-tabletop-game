@@ -2,16 +2,15 @@ import { useState } from "react";
 import Button from "@/components/ui/button";
 
 type PokeButtonProps = {
-  sendPoke: (username: string) => void;
-  username: string;
+  onPoke: () => void;
 };
 
-export default function PokeButton({ sendPoke, username }: PokeButtonProps) {
+export default function PokeButton({ onPoke }: PokeButtonProps) {
   const [buttonText, setButtonText] = useState("Poke");
   const initialState = "Poke";
 
   const handleClick = () => {
-    sendPoke(username);
+    onPoke();
     setButtonText("Poked");
     setTimeout(() => setButtonText(initialState), 1000);
   };
